@@ -13,7 +13,7 @@ $response = new Response();
 
 if(AppletInstance::getFlowType() == 'voice'){
 	$response->addSay($tweet->status->text);
-		$next = AppletInstance::getDropZoneUrl('next');
+	$next = AppletInstance::getDropZoneUrl('next');
 	if(!empty($next))
 		$response->addRedirect($next);
 }
