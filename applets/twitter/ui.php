@@ -8,7 +8,7 @@
 	</div>
 <?php if(AppletInstance::getFlowType() == 'voice'): ?>
 	<h2>Next</h2>
-	<p>After this applet is tracked, continue to the next applet</p>
+	<p>After reading the tweet, continue to the next applet</p>
 	<div class="vbx-full-pane">
 		<?php echo AppletUI::DropZone('next'); ?>
 	</div><!-- .vbx-full-pane -->
