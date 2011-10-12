@@ -1,7 +1,7 @@
 <?php
 $name = AppletInstance::getValue('name');
 
-$response = new Response();
+$response = new TwimlResponse;
 
 if(!empty($name)) {
 	$ch = curl_init();
@@ -13,13 +13,13 @@ if(!empty($name)) {
 	curl_close($ch);
 
 	if(AppletInstance::getFlowType() == 'voice') {
-		$response->addSay($tweet->status->text);
+		$response->say($tweet->status->text);
 		$next = AppletInstance::getDropZoneUrl('next');
 		if(!empty($next))
-			$response->addRedirect($next);
+			$response->redirect($next);
 	}
 	else
-		$response->addSms($tweet->status->text);
+		$response->sms($tweet->status->text);
 }
 
-$response->Respond();
+$response->respond();
