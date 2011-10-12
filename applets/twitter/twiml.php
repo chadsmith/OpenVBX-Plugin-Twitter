@@ -1,6 +1,6 @@
 <?php
+$ci =& get_instance();
 $name = AppletInstance::getValue('name');
-
 $response = new TwimlResponse;
 
 if(!empty($name)) {
@@ -13,7 +13,10 @@ if(!empty($name)) {
 	curl_close($ch);
 
 	if(AppletInstance::getFlowType() == 'voice') {
-		$response->say($tweet->status->text);
+		$response->say($tweet->status->text, array(
+			'voice' => $ci->vbx_settings->get('voice', $ci->tenant->id),
+			'voice_language' => $ci->vbx_settings->get('voice_language', $ci->tenant->id)
+		));
 		$next = AppletInstance::getDropZoneUrl('next');
 		if(!empty($next))
 			$response->redirect($next);
